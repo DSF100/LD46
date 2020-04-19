@@ -14,30 +14,32 @@ public class Movement : MonoBehaviour
         myMainCamera = Camera.main;
 
         rb = gameObject.GetComponent<Rigidbody2D>();
-        rb.AddForce(new Vector2(1000, -1000));
+        Vector2 force = new Vector2(Random.Range(-100, 100), Random.Range(-100, 100));
+
+        rb.AddForce(force);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y - transform.localScale.y / 2 - 0.1 >= myMainCamera.orthographicSize)
+        if (transform.position.y - transform.localScale.y / 2 - 0.6 >= myMainCamera.orthographicSize)
         {
-            transform.position = new Vector3(transform.position.x, -myMainCamera.orthographicSize + 0.1f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -myMainCamera.orthographicSize - 0.5f, transform.position.z);
         }
 
-        if (transform.position.y + transform.localScale.y / 2 + 0.1 <= -myMainCamera.orthographicSize)
+        if (transform.position.y + transform.localScale.y / 2 + 0.6 <= -myMainCamera.orthographicSize)
         {
-            transform.position = new Vector3(transform.position.x, myMainCamera.orthographicSize - 0.1f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, myMainCamera.orthographicSize + 0.5f, transform.position.z);
         }
 
-        if (transform.position.x - transform.localScale.x / 2 - 0.1 >= myMainCamera.orthographicSize * myMainCamera.aspect)
+        if (transform.position.x - transform.localScale.x / 2 - 0.6 >= myMainCamera.orthographicSize * myMainCamera.aspect)
         {
-            transform.position = new Vector3(-myMainCamera.orthographicSize * myMainCamera.aspect + 0.1f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-myMainCamera.orthographicSize * myMainCamera.aspect - 0.5f, transform.position.y, transform.position.z);
         }
 
-        if (transform.position.x + transform.localScale.x / 2 + 0.1 <= -myMainCamera.orthographicSize * myMainCamera.aspect)
+        if (transform.position.x + transform.localScale.x / 2 + 0.6 <= -myMainCamera.orthographicSize * myMainCamera.aspect)
         {
-            transform.position = new Vector3(myMainCamera.orthographicSize * myMainCamera.aspect - 0.1f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(myMainCamera.orthographicSize * myMainCamera.aspect + 0.5f, transform.position.y, transform.position.z);
         }
     }
 }

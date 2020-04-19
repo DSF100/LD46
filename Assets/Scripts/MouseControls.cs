@@ -14,6 +14,10 @@ public class MouseControls : MonoBehaviour
     Vector3 marker1;
     Vector3 marker2;
 
+    public GameObject rightClickVfx;
+
+    bool vfx;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,14 +30,23 @@ public class MouseControls : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Debug.Log("yep");
-
+            vfx = true;
+            
             foreach (GameObject P in GameObject.FindGameObjectsWithTag("Player"))
             {
                 if (P.transform.GetComponentInChildren<Selected>().selected)
                 {
-                    P.transform.GetChild(1).position = myMainCamera.ScreenToWorldPoint(Input.mousePosition);
+                    if (vfx)
+                    {
+                        Instantiate(rightClickVfx, new Vector3(myMainCamera.ScreenToWorldPoint(Input.mousePosition).x, myMainCamera.ScreenToWorldPoint(Input.mousePosition).y, 0), Quaternion.identity);
+                        vfx = false;
+                    }
+
+                    P.transform.GetChild(1).position = new Vector3(myMainCamera.ScreenToWorldPoint(Input.mousePosition).x, myMainCamera.ScreenToWorldPoint(Input.mousePosition).y, 0);
                 }
             }
+
+            vfx = true;
         }
     }
 
