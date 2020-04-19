@@ -38,6 +38,7 @@ public class MouseControls : MonoBehaviour
                 {
                     if (vfx)
                     {
+                        FindObjectOfType<AudioManager>().Play("goto");
                         Instantiate(rightClickVfx, new Vector3(myMainCamera.ScreenToWorldPoint(Input.mousePosition).x, myMainCamera.ScreenToWorldPoint(Input.mousePosition).y, 0), Quaternion.identity);
                         vfx = false;
                     }

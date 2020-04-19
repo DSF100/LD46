@@ -45,5 +45,6 @@ public class Spawner : MonoBehaviour
     void Spawn()
     {
         Instantiate(toBeSpawned, pos, Quaternion.Euler(new Vector3(0f, 0f, angle)));
+        FindObjectOfType<AudioManager>().Play("enemy spawn");
     }
 }

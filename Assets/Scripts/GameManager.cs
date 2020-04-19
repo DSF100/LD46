@@ -82,15 +82,21 @@ public class GameManager : MonoBehaviour
 
     void Spawn()
     {
+        FindObjectOfType<AudioManager>().Play("player spawn");
         Instantiate(Player);
     }
 
     void DestroyAllPlayer()
     {
-        foreach(GameObject G in GameObject.FindGameObjectsWithTag("Player"))
+        foreach (GameObject G in GameObject.FindGameObjectsWithTag("Player"))
         {
             Destroy(G, 1);
         }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     public void Restart()

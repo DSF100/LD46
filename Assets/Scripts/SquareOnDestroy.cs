@@ -20,6 +20,7 @@ public class SquareOnDestroy : MonoBehaviour
 
     private void OnDestroy()
     {
+        FindObjectOfType<AudioManager>().Play("explosion");
         Instantiate(Death, transform.GetChild(0).transform.position, Quaternion.identity);
     }
 }
